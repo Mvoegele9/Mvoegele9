@@ -115,13 +115,78 @@ header::before{
 @media (prefers-reduced-motion: reduce){
   .cloud{ animation:none; left:20% }
 }
+
+/* Asteroids that drift through the header and pop the clouds */
+.asteroid-layer{
+  position:absolute;
+  inset:0;
+  overflow:visible;
+  pointer-events:none;
+  z-index:2;
+}
+.asteroid{
+  position:absolute;
+  left:0;
+  top:0;
+  width:24px;
+  height:24px;
+}
+.asteroid-rock{
+  width:100%;
+  height:100%;
+  border-radius:42% 58% 55% 45% / 50% 45% 55% 50%;
+  background:radial-gradient(circle at 35% 30%, #a8998a, #5c4f42 70%);
+  box-shadow:inset -3px -3px 4px rgba(0,0,0,.4), inset 2px 2px 3px rgba(255,255,255,.25);
+  animation:spin 3s linear infinite;
+}
+@keyframes spin{
+  from{ transform:rotate(0deg); }
+  to{ transform:rotate(360deg); }
+}
+.cloud-boom{
+  animation:boom .45s ease-out forwards !important;
+}
+@keyframes boom{
+  0%{ transform:scale(1); opacity:1; filter:brightness(1); }
+  40%{ transform:scale(1.4); opacity:.9; filter:brightness(1.7) saturate(1.4); }
+  100%{ transform:scale(.15); opacity:0; }
+}
+.spark{
+  position:absolute;
+  width:6px;
+  height:6px;
+  margin:-3px 0 0 -3px;
+  border-radius:50%;
+  background:radial-gradient(circle, #fff, #ffd23f 60%, transparent 72%);
+  pointer-events:none;
+  animation:spark-fly .55s ease-out forwards;
+  z-index:3;
+}
+@keyframes spark-fly{
+  to{ transform:translate(var(--dx), var(--dy)); opacity:0; }
+}
+@media (prefers-reduced-motion: reduce){
+  .asteroid, .spark{ display:none }
+  header h1{ animation:none; transform:translate(-50%,-50%) !important; }
+}
+.name-arena{
+  position:relative;
+  height:76px;
+  margin:0 0 6px;
+  overflow:visible;
+}
 header h1{
   font-family:'Playfair Display',serif;
   font-size:2.75rem;
   font-weight:700;
-  margin:0 0 10px;
+  margin:0;
   letter-spacing:.5px;
-  position:relative;
+  white-space:nowrap;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  will-change:transform;
 }
 @supports ((-webkit-background-clip: text) or (background-clip: text)){
   header h1{
