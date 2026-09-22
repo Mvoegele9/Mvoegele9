@@ -123,6 +123,15 @@ header h1{
   letter-spacing:.5px;
   position:relative;
 }
+@supports ((-webkit-background-clip: text) or (background-clip: text)){
+  header h1{
+    background:linear-gradient(90deg,#ff8fb8,#8fd3ff,#b6f2a1,#ffd166,#8fd3ff,#6fe3d0);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    color:transparent;
+  }
+}
 header p{
   margin:0;
   font-size:1.05rem;
@@ -271,3 +280,47 @@ footer{
   font-size:.9rem;
 }
 footer a{ font-weight:600 }
+
+/* Snake game */
+.game-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+.game-score{
+  font-family:'Baloo 2','Playfair Display',serif;
+  font-weight:700;
+  font-size:1.05rem;
+  color:var(--accent);
+  display:flex;
+  gap:26px;
+}
+#snake-canvas{
+  background:var(--paper);
+  border:3px solid var(--accent);
+  border-radius:14px;
+  box-shadow:0 10px 30px -18px rgba(14,124,134,.35);
+  max-width:100%;
+  height:auto;
+  touch-action:none;
+}
+.game-hint{
+  color:var(--muted);
+  font-size:.9rem;
+  text-align:center;
+  margin:0;
+}
+.game-btn{
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:10px 24px;
+  border-radius:999px;
+  font-family:'Baloo 2','Playfair Display',serif;
+  font-weight:700;
+  font-size:1rem;
+  cursor:pointer;
+  box-shadow:0 8px 18px -8px rgba(14,124,134,.55);
+}
+.game-btn:hover{ background:#0a5c66 }
